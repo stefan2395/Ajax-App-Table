@@ -1,0 +1,48 @@
+/* =====> TABLE STYLE <===== */
+.content {
+  width: 80%;
+  margin: 0 auto; }
+  .content > .select_container, .content .button_container {
+    width: 10%;
+    display: inline-block;
+    margin-bottom: 30px; }
+
+table {
+  border-collapse: separate;
+  border-spacing: 0px; }
+  table > thead {
+    background-color: #1F2739;
+    color: #0084ec;
+    font-size: 18px;
+    font-weight: bold;
+    border: none; }
+    table > thead > tr {
+      text-align: left; }
+      table > thead > tr > th {
+        padding: 20px;
+        border: none;
+        cursor: pointer;
+        -webkit-transition: color 1s; }
+        table > thead > tr > th:hover {
+          color: green; }
+  table > tbody > tr:nth-child(odd) {
+    background: #434972;
+    color: #d5d5d5; }
+  table > tbody > tr:nth-child(even) {
+    background: #525252;
+    color: #d5d5d5; }
+  table > tbody > tr > td {
+    text-align: left;
+    border: solid 1px #1F2739;
+    padding: 20px; }
+    table > tbody > tr > td:hover {
+      background: yellow;
+      transform: translate3d(5px, 5px, 5px);
+      transition-duration: 1s;
+      -webkit-transition-duration: 1s;
+      color: #434972;
+      box-shadow: -1px -1px #7b7b00, -2px -2px #7b7b00, -3px -3px #7b7b00, -4px -4px #7b7b00, -5px -5px #7b7b00; }
+
+/* =====> END: TABLE STYLE <===== */
+
+/*# sourceMappingURL=style.css.map */

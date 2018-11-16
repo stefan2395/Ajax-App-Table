@@ -1,16 +1,21 @@
 <?php 
-
 	include 'connection.php';
+	
+	if ($_POST['submit']) {
+		$username 		= $_POST['username'];
+		$password  		= $_POST['password'];
 
-	$name 		= $_POST['name'];
-	$email 		= $_POST['email'];
-	$password   = $_POST['password'];
+		$sql = "INSERT INTO login_table (username, password) VALUES ('$username', '$password')";
+		
+		$query = mysqli_query($con, $sql);
+		
+		if ($query) {
+		    echo "New record created successfully.";
+		} else {
+		    echo "Error: " . $sql;
+		}
 
-	$sql = "INSERT INTO users (name, email, password) VALUES ('{$name}', '{$email}', '{$password}' )";
-	$con->query($sql);
+	}
 
-	echo "<td>{$name}</td>";
-	echo "<td>{$email}</td>";
-	echo "<td>{$password}</td>";
 
 ?>

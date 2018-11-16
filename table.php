@@ -2,7 +2,7 @@
 
 	include("connection.php");
 
-	$result = mysqli_query($con,"SELECT * FROM users");
+	$result = mysqli_query($con,"SELECT * FROM login_table");
 
 	$data = array();
 	while ($row = mysqli_fetch_assoc($result)) {

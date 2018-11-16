@@ -1,7 +1,7 @@
 <?php 
 
 	$con = mysqli_connect("localhost","root",""); 
-	mysqli_select_db($con,"lara23");
+	mysqli_select_db($con,"app");
 
 	if (!$con)
 	{

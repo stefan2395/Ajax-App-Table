@@ -2,15 +2,18 @@
 
 	include 'connection.php';
 
-	$id = $_POST['id'];
+	if (isset($_POST['delete'])) {
 
-	$sql = 'DELETE FROM users WHERE id = "'.$id.'" ';
+		$id = $_POST['id'];
 
-	$result = mysqli_query($con,$sql);
+		$sql = 'DELETE FROM login_table WHERE id = "'.$id.'" ';
 
-	if(isset($result)) {
-	   echo "YES";
-	} else {
-	   echo "NO";
+		$result = mysqli_query($con,$sql);
+
+		if(isset($result)) {
+		   echo "YES deleted";
+		} else {
+		   echo "NO, its not deleted";
+		}
 	}
 ?>
