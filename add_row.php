@@ -1,11 +1,12 @@
 <?php 
 	include 'connection.php';
 	
-	if ($_POST['submit']) {
-		$username 		= $_POST['username'];
-		$password  		= $_POST['password'];
+	if (isset($_POST)) {
 
-		$sql = "INSERT INTO login_table (username, password) VALUES ('$username', '$password')";
+		$name 		= $_POST['name'];
+		$pzn  		= $_POST['pzn'];
+
+		$sql = "INSERT INTO person (NAME, PZN) VALUES ('$name', '$pzn')";
 		
 		$query = mysqli_query($con, $sql);
 		
@@ -15,7 +16,8 @@
 		    echo "Error: " . $sql;
 		}
 
+		echo json_encode($query);
 	}
-
+	
 
 ?>

@@ -4,7 +4,7 @@
 	if (isset($_GET['id'])) {
 		$id = $_GET['id'];
 
-		$result = mysqli_query($con, "SELECT DISTINCT * FROM login_table WHERE id = $id");
+		$result = mysqli_query($con, "SELECT DISTINCT * FROM person WHERE id = $id");
 
 		$data = array();
 		while ($row = mysqli_fetch_assoc($result)) {

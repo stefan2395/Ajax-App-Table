@@ -22,11 +22,11 @@
 				<option value="">Select table</option>
 				<?php 
 					include 'connection.php';
-					$tableSelect = mysqli_query($con, "SELECT * FROM login_table");
+					$tableSelect = mysqli_query($con, "SELECT * FROM person");
 					$data = array();
 					while ($row = mysqli_fetch_assoc($tableSelect)) {
 						$data[] = $row;
-						echo "<option value=".$row['id'].">".$row['username']."</option>";
+						echo "<option value=".$row['id'].">".$row['NAME']."</option>";
 					}
 				?>
 			</select>
@@ -35,18 +35,18 @@
 
 		<div class="form-popup">
 
-			<form id="frm"  class="form__container" action="add_row.php" method="post">	
+			<form id="frm"  class="form__container" action="" method="post">	
 				<!-- <a href="#" type="button" class="btn cancel">&times;</a> -->
 				<ul>
 
 					<li>
 						<label>Username</label>
-						<input type="text" name="username" id="username">	
+						<input type="text" name="name" id="name">	
 					</li>
 
 					<li>
 						<label>Pssword</label>
-						<input type="text" name="password" id="password">
+						<input type="text" name="pzn" id="pzn">
 					</li>
 
 					<li>
@@ -114,14 +114,14 @@
 			for (var a = 0; a < data.length; a++) {
 
 				var id 			= data[a].id;
-				var firstName   = data[a].username;
-				var password 	= data[a].password;
+				var NAME   		= data[a].NAME;
+				var PZN 		= data[a].PZN;
 				
 
 				html += "<tr>";
 					html += "<td>" + id + "</td>";
-					html += "<td>" + firstName + "</td>";
-					html += "<td>" + password + "</td>";	
+					html += "<td>" + NAME + "</td>";
+					html += "<td>" + PZN + "</td>";	
 					html += "<td>" + 
 									"<form id='delete' method='post' action=''>" + 
 										"<input type='hidden' name='deleteRow'  value='<?php echo $row['id']; ?>'/>" + 
@@ -138,6 +138,34 @@
 
 	}
 	// ===========> END: DISPLAY Table from Database JS <===========
+
+
+
+
+
+		
+
+		document.getElementById("submit").addEventListener("click", function () {
+
+		//id from FORM 
+		var name = document.getElementById("name");
+
+		var a      = new XMLHttpRequest;
+		var aGet   = 'POST';
+		var aQuery = 'add_row.php';
+		var aTrue  = true;
+		var data   = "name=" + name + "&pzn=" + pzn;
+
+			a.onreadystatechange = function() {
+				if (this.readyState == 4 && this.status == 200) {
+					console.log("Added row");
+				}
+			}
+
+			a.open(aGet, aQuery, aTrue);
+			a.send(data);
+		});	
+
 
 
 
@@ -168,15 +196,21 @@
 				for (var a = 0; a < data.length; a++) {
 
 					var id 			= data[a].id;
-					var firstName   = data[a].username;
-					var password 	= data[a].password;
+					var NAME   		= data[a].NAME;
+					var PZN 		= data[a].PZN;
 					
 
 					html += "<tr>";
-						html += "<td>" + id + "</td>";
-						html += "<td>" + firstName + "</td>";
-						html += "<td>" + password + "</td>";	
-					html += "</tr>";
+					html += "<td>" + id + "</td>";
+					html += "<td>" + NAME + "</td>";
+					html += "<td>" + PZN + "</td>";	
+					html += "<td>" + 
+									"<form id='delete' method='post' action=''>" + 
+										"<input type='hidden' name='deleteRow'  value='<?php echo $row['id']; ?>'/>" + 
+										"<button name='delete' class='delete' onclick='javascript:handleDeleteClick(event, <?php echo $row["id"]; ?>);'>Delete</button>" + 
+									"</form>"
+							"</td>";
+				html += "</tr>";
 				}
 
 				document.getElementById("responsveTable").innerHTML = html;
