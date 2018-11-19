@@ -1,7 +1,7 @@
 <?php 
 
 	$con = mysqli_connect("localhost","root",""); 
-	mysqli_select_db($con,"app");
+	mysqli_select_db($con,"schulcheck");
 
 	if (!$con)
 	{

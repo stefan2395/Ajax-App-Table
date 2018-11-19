@@ -2,11 +2,11 @@
 
 	include 'connection.php';
 
-	if (isset($_POST['delete'])) {
+	if (isset($_GET['ID'])) {
 
-		$id = $_POST['id'];
+		$id = $_GET['ID'];
 
-		$sql = 'DELETE FROM login_table WHERE id = "'.$id.'" ';
+		$sql = 'DELETE FROM beta WHERE ID = "'.$id.'" ';
 
 		$result = mysqli_query($con,$sql);
 
