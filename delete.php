@@ -15,5 +15,7 @@
 		} else {
 		   echo "NO, its not deleted";
 		}
+		echo json_encode($result);
 	}
+
 ?>

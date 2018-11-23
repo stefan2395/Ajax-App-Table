@@ -2,12 +2,16 @@
 
 	include'connection.php';
 
-	$name  		= $_POST['name'];
-	$email 		= $_POST['email'];
-	$password 	= $_POST['password'];
-	$id    		= $_POST['id'];
+	if(isset($_POST['submit'])) {
 
-	$sql = "UPDATE users SET name = '{$name}', email = '{$email}', password = '{$password}' WHERE id = '{$id}'";
-	$con->query($sql);
+		$name  		= $_POST['name'];
+		$email 		= $_POST['email'];
+		$id    		= $_POST['ID'];
+
+		$sql = "UPDATE beta SET name = '$name', email = '$email' WHERE ID = $id";
+		$con->query($sql);
+
+		echo json_encode($sql);
+	}
 
 ?>

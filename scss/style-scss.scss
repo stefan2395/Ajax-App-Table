@@ -1,3 +1,7 @@
+li {
+	list-style: none;
+}
+
 $greyBlue: #434972;
 $black: #1F2739;
 $darkBlue: #0084ec;
@@ -10,7 +14,6 @@ $darkGrey: #525252;
 
 .content {
 	width: 80%;
-	margin: 0 auto;
 
 	& > .select_container, .button_container {
 		width: 10%;
@@ -19,7 +22,7 @@ $darkGrey: #525252;
 	}
 }
 
-table {
+.sortable {
 	border-collapse: separate;
     border-spacing: 0px;
 	& > thead {
@@ -58,6 +61,14 @@ table {
 				text-align: left;
 				border: solid 1px $black;
 				padding: 20px;
+				& > a {
+					text-decoration: none;
+					color: white;
+					&:hover {
+						text-decoration: underline;
+						color: blue;
+					}
+				}
 				&:hover {
 					background: yellow;
 					transform: translate3d(5px, 5px, 5px);
@@ -77,3 +88,60 @@ table {
 
 
 /* =====> END: TABLE STYLE <===== */
+
+
+
+
+/* =====> BUTTONS for display tables <===== */
+
+.buttons-container {
+	border: solid 1px;
+	border-radius: 5px;
+	& > ul {
+		padding: 0;
+		border-bottom: solid 1px;
+		padding-bottom: 20px;
+		& > li {
+			display: inline-block;
+			margin-left: 30px;
+			cursor: pointer;
+			color: blue;
+			& > p {
+				font-size: 25px;
+				margin: 0;
+			}
+		}
+	}
+}
+
+/* =====> END: BUTTONS for display tables <===== */
+
+
+
+
+
+/* =====> CONTAINER with SERVICE and USER info <===== */
+
+.service-info {
+	.user-info, .img-service  {
+		display: inline-block;
+		width: 48%;
+		vertical-align: middle;
+	}
+	.img-service {
+		text-align: right;
+	}
+	.user-info {
+		text-align: left;
+		& > tbody {
+			& > tr {
+				line-height: 30px;
+				& > th {
+				padding-right: 30px;
+				}
+			}
+		}
+	}
+}
+
+/* =====> END: CONTAINER with SERVICE and USER info <===== */

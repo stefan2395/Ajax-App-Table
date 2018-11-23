@@ -4,9 +4,10 @@
 	
 
 		$name 		= $_POST['name'];
-		$pzn  		= $_POST['pzn'];
+		$email  	= $_POST['email'];
+		$url 	 	= $_POST['url'];
 
-		$sql = "INSERT INTO beta (name, email) VALUES ('$name', '$pzn')";
+		$sql = "INSERT INTO beta (name, email, url) VALUES ('$name', '$email', '$url')";
 		
 		$query = mysqli_query($con, $sql);
 		
@@ -16,6 +17,6 @@
 		} else {
 		    echo "Error: " . $sql;
 		}
-	
+
 
 ?>
