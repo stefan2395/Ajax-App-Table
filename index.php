@@ -3,9 +3,15 @@
 	
 
 	<div class="content">
-	 	<a href="logout.php">
-            <p>Logout</p>
-        </a>
+
+		<div class="popup" onclick="popup()">My Account
+		  	<div class="popuptext" id="myPopup">
+		  		<a href="logout.php">
+            		<p>Logout</p>
+        		</a>
+    		</div>
+		</div>
+	 	
 
         <div class="welcome-title">
         	<h2>Welcome, <span style="text-transform: capitalize;"><?php echo $username ?></span>!</h2>
@@ -140,7 +146,12 @@
 <script type="text/javascript">
 
 	
-
+	// ===========>  When the user clicks on div, open the popup, ACCOUNT BUTTON <===========
+	function popup() {
+	    var popup = document.getElementById("myPopup");
+	    popup.classList.toggle("show");
+	}
+	// ===========> END: When the user clicks on div, open the popup, ACCOUNT BUTTON <===========
 
 
 
