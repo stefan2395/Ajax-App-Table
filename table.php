@@ -2,7 +2,7 @@
 
 	include("connection.php");
 
-	$result = mysqli_query($con,"SELECT * FROM beta");
+	$result = mysqli_query($con,"SELECT * FROM person");
 
 	$data = array();
 	while ($row = mysqli_fetch_assoc($result)) {

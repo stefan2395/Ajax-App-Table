@@ -3,11 +3,11 @@
 	
 	
 
-		$name 		= $_POST['name'];
-		$email  	= $_POST['email'];
-		$url 	 	= $_POST['url'];
+		$NAME 		= $_POST['name'];
+		$PZN  		= $_POST['pzn'];
+		$URL 	 	= $_POST['url'];
 
-		$sql = "INSERT INTO beta (name, email, url) VALUES ('$name', '$email', '$url')";
+		$sql = "INSERT INTO person (NAME, PZN, URL) VALUES ('$NAME', '$PZN', '$URL')";
 		
 		$query = mysqli_query($con, $sql);
 		

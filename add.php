@@ -7,13 +7,12 @@
     <fieldset>
      <a href="index.php">Home</a>
 
-     <h3 style="cursor: pointer; color: green;" >Save</h3>
-     <h3 style="cursor: pointer; color: red;" onclick="discard()">Discard</h3>
+     <h3 style="cursor: pointer; color: green;" onclick="addRow();">Save</h3>
+     <h3 style="cursor: pointer; color: red;" onclick="discard();">Discard</h3>
 
 
         <div class="form-popup">
-            <h3>Add row in IDEALO table:</h3>
-            <form id="frm"  class="form__container" action="" method="post" onsubmit="addRow(); save();">    
+            <h3>Add row in IDEALO table:</h3>   
                 <!-- <a href="#" type="button" class="btn cancel">&times;</a> -->
                 <ul>
 
@@ -23,8 +22,8 @@
                     </li>
 
                     <li>
-                        <label>Email</label><br>
-                        <input type="text" name="email" id="email">
+                        <label>Pzn</label><br>
+                        <input type="text" name="pzn" id="pzn">
                     </li>
 
 
@@ -33,14 +32,7 @@
                         <input type="text" name="url" id="url">
                     </li>
 
-                    <li><br>
-                        <input type="submit" name="submit" id="submit" value="submit">
-                    </li>
-
                 </ul>
-            </form>
-
-
 
         </form>     
     </fieldset>
@@ -71,19 +63,6 @@
         })
     }
 
-    // Save button
-    function save() {
-        swal({
-            position: 'top-end',
-            type: 'success',
-            title: 'Your work has been saved',
-            showConfirmButton: false,
-            timer: 1500,
-            
-        }).then(function(){
-            window.location.href = "index.php";
-         });
-    }
     // ===========> END: Sweetalert2 <===========
 
 
@@ -95,12 +74,12 @@
 
             //id from FORM inputs
             var name    = document.getElementById("name").value;
-            var email   = document.getElementById("email").value;
+            var pzn     = document.getElementById("pzn").value;
             var url     = document.getElementById("url").value; 
 
             var aData = new FormData();
             aData.append('name', name);
-            aData.append('email', email);
+            aData.append('pzn', pzn);
             aData.append('url', url);
 
             var a      = new XMLHttpRequest;
@@ -120,33 +99,22 @@
             a.send(aData);
 
 
-            // sweetalert2
+            // Save button sweetalert2
             swal({
-            position: 'top-end',
-            type: 'success',
-            title: 'Your work has been saved',
-            showConfirmButton: false,
-            timer: 1500,
-            
-            }).then(function(){
-                window.location.href = "index.php";
-            });
-            // sweetalert2
+                position: 'top-end',
+                type: 'success',
+                title: 'Your work has been saved',
+                showConfirmButton: false,
+                timer: 1500
+            }).then(() => {
+                window.location = 'index.php';
+            })
+            // EDN: Save button sweetalert2
+
         }   
     // ===========> END: ADD row to Table Database JS <===========
 
 
-
-    // ===========> Display popup when click od discard <===========
-
-        function getConfirmation() {
-            var retVal = confirm("Do you want to continue ?");
-            if (retVal == true)
-            {
-                window.location = 'index.php';
-            } 
-        }
-    // ===========> END: Display popup when click od discard <===========
 
 
 

@@ -5,7 +5,7 @@
 	if($_GET['ID']) {
 		$id = $_GET['ID'];
 
-		$sql = "SELECT * FROM beta WHERE ID = {$id}";
+		$sql = "SELECT * FROM person WHERE ID = {$id}";
 		$result = $con->query($sql);
 
 		$data = $result->fetch_assoc();
@@ -29,7 +29,7 @@
 			<h3>Last updated</h3>
 
 		    <div class="date-time-cont">
-		        <h4><?php echo $data['DATE'] ?></h4>
+		        <!-- <h4><?php echo $data['DATE'] ?></h4> -->
 		    </div>
 
 
@@ -61,13 +61,18 @@
 
 						<tr>
 							<th>Name</th>
-							<td><input type="text" id="name" name="name" placeholder="name" value="<?php echo $data['name'] ?>" /></td>
+							<td><input type="text" id="NAME" name="NAME" placeholder="NAME" value="<?php echo $data['NAME'] ?>" /></td>
 						</tr>
 
 						<tr>
-							<th>Email</th>
-							<td><input rows="4" id="email" type="text" name="email" placeholder="email" value="<?php echo $data['email'] ?>"></input></td>
+							<th>Pzn</th>
+							<td><input rows="4" id="PZN" type="text" name="PZN" placeholder="PZN" value="<?php echo $data['PZN'] ?>"></input></td>
 						</tr>
+
+						<tr>
+							<th>URL</th>
+							<td><input rows="4" id="URL" type="text" name="URL" placeholder="URL" value="<?php echo $data['URL'] ?>"></input></td>
+						</tr
 
 					</table>
 			
@@ -90,13 +95,14 @@
 <script>
 	function handleUpdateClick(updateId) {
 
-	    var name		= document.getElementById("name").value;
-	    var email		= document.getElementById("email").value;
-	    var save		= document.getElementById("save").value;
+	    var NAME		= document.getElementById("NAME").value;
+	    var PZN			= document.getElementById("PZN").value;
+	    var URL			= document.getElementById("URL").value;
+	    var save		= document.getElementById("save");
 
 	    // Perform the AJAX request to update this use
 	    var delRow 		= document.getElementById("updateRow");
-	    var varsSend	= "ID=" + updateId + "&name=" + name + "&email=" + email + "&save" + save;
+	    var varsSend	= "ID=" + updateId + "&NAME=" + NAME + "&PZN=" + PZN + "&URL" + URL + "&save" + save;
 	    var page 		= "update.php";
 	    var xmlhttp 	= new XMLHttpRequest();
 	    // var delID		= "" + userId;
@@ -109,8 +115,7 @@
 
 	        xmlhttp.onreadystatechange = function() {
 	            if(xmlhttp.readyState == 4 && xmlhttp.status == 200){
-	                document.getElementById("update-response").innerHTML = "Successful SAVED";   
-	                alert(xmlhttp.responseText);  
+	                document.getElementById("update-response").innerHTML = "Successful SAVED";    
 	            }
 	        }
 

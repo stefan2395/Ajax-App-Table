@@ -2,7 +2,7 @@
 
 	include("connection.php");
 
-	$result = mysqli_query($con,"SELECT * FROM cities");
+	$result = mysqli_query($con,"SELECT * FROM app_table");
 
 	$data = array();
 	while ($row = mysqli_fetch_assoc($result)) {

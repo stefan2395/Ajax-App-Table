@@ -6,7 +6,7 @@
 
 		$id = $_GET['ID'];
 
-		$sql = 'DELETE FROM beta WHERE ID = "'.$id.'" ';
+		$sql = 'DELETE FROM person WHERE ID = "'.$id.'" ';
 
 		$result = mysqli_query($con,$sql);
 

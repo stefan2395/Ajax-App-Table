@@ -108,11 +108,11 @@
 				<option value="">Select table</option>
 				<?php 
 					include 'connection.php';
-					$tableSelect = mysqli_query($con, "SELECT DISTINCT * FROM beta GROUP BY name");
+					$tableSelect = mysqli_query($con, "SELECT DISTINCT * FROM person GROUP BY NAME");
 					$data = array();
 					while ($row = mysqli_fetch_assoc($tableSelect)) {
 						$data[] = $row;
-						echo "<option value=".$row['ID'].">".$row['name']."</option>";
+						echo "<option value=".$row['ID'].">".$row['NAME']."</option>";
 					}
 				?>
 			</select>
@@ -124,11 +124,11 @@
 		<!-- SHOW message when DELETE a row -->
 		<h3 id="delete-response"></h3>
 
+		<input type="text" id="mySearch" onkeyup="Search()" placeholder="Search for products.." title="Type in a name">
 		<!-- SHOW tables when click on buttons -->
 		<h3>List of products:</h3> <p id="Idealo-text" style="display: none;"> Idealo </p>
-		<div id="responsveTable">
-			
-		</div>
+
+		<div id="responsveTable" class="sortDiv"></div>
 
 
 		
@@ -139,13 +139,108 @@
 </html>
 
 
-
+<style type="text/css">
+	.active, .btn:hover {
+	    background-color: #666;
+	    color: white;
+	}
+</style>
 
 
 
 <script type="text/javascript">
 
-	
+	// ===========>  Search table --> FROM w3s site <===========
+
+	/* ******* 											*******
+	   ******* BAG --> Trazi u tabeli samo po ID koloni ******* 
+	   ******* 											******* */
+	   
+	function Search() {
+		var input, filter, table, tr, td, j;
+		input 	= document.getElementById("mySearch");
+		filter 	= input.value.toUpperCase();
+		table 	= document.getElementById("myTable");
+		tr 		= table.getElementsByTagName("tr");
+		
+
+	  	for (i = 0; i < tr.length; i++) {
+		    td = tr[i].getElementsByTagName("td")[0];
+		    if (td) {
+		      	if (td.innerHTML.toUpperCase().indexOf(filter.toUpperCase()) > -1) {
+		        	tr[i].style.display = "";
+		      	} else {
+		      		tr[i].style.display = "none";
+		      	}
+		    }       
+	  	}
+	}
+	// ===========>  Search table --> FROM w3s site <===========
+
+
+
+
+	// ===========>  Sort table --> FROM w3s site <===========
+    function sortTable(n) {
+	var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+	table = document.getElementById("myTable");
+	switching = true;
+	//Set the sorting direction to ascending:
+	dir = "asc"; 
+	/*Make a loop that will continue until
+	no switching has been done:*/
+		while (switching) {
+			//start by saying: no switching is done:
+			switching = false;
+			rows = table.rows;
+			/*Loop through all table rows (except the
+			first, which contains table headers):*/
+			for (i = 1; i < (rows.length - 1); i++) {
+				//start by saying there should be no switching:
+				shouldSwitch = false;
+				/*Get the two elements you want to compare,
+				one from current row and one from the next:*/
+				x = rows[i].getElementsByTagName("TD")[n];
+				y = rows[i + 1].getElementsByTagName("TD")[n];
+				/*check if the two rows should switch place,
+				based on the direction, asc or desc:*/
+			  	if (dir == "asc") {
+					if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+						//if so, mark as a switch and break the loop:
+						shouldSwitch= true;
+						break;
+					}
+			  	} else if (dir == "desc") {
+				    if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+						//if so, mark as a switch and break the loop:
+						shouldSwitch = true;
+						break;
+				    }
+			  	}
+			}
+			if (shouldSwitch) {
+				/*If a switch has been marked, make the switch
+				and mark that a switch has been done:*/
+				rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+				switching = true;
+				//Each time a switch is done, increase this count by 1:
+			  switchcount ++;      
+			} else {
+			  /*If no switching has been done AND the direction is "asc",
+			  set the direction to "desc" and run the while loop again.*/
+			  if (switchcount == 0 && dir == "asc") {
+				    dir = "desc";
+				    switching = true;
+			   	}
+			}	
+		}
+	}
+    // ===========> END: Sort table --> FROM w3s site <===========
+
+
+
+
+
 	// ===========>  When the user clicks on div, open the popup, ACCOUNT BUTTON <===========
 	function popup() {
 	    var popup = document.getElementById("myPopup");
@@ -249,7 +344,6 @@
 	// receiving response from data.php
 	ajax.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
-
 			// Converting JSON
 			var data = JSON.parse(this.responseText);
 			console.log(data);
@@ -259,10 +353,10 @@
 
 			html += '<table border="1" cellspacing="0" cellpadding="0" id="myTable" id="pagination" class="sortable table pagination">' +
 				'<thead>' +
-                     '<tr>'   +
-                        '<th>' + 'ID' 	  + '</th>' +
-                        '<th>' + 'Name'   + '</th>' +
-                        '<th>' + 'Email'  + '</th>' +
+                 	'<tr>' +
+                        '<th class="sort" onclick="sortTable(0)">' + 'ID' 	  + '</th>' +
+                        '<th class="sort" onclick="sortTable(1)">' + 'Name'  + '</th>' +
+                        '<th class="sort" onclick="sortTable(2)">' + 'Pzn'   + '</th>' +
                         '<th>' + 'Action' + '</th>' +
                    '</tr>' +
                 '</thead>';
@@ -271,23 +365,23 @@
 			for (var a = 0; a < data.length; a++) {
 
 				var ID 			= data[a].ID;
-				var name   		= data[a].name;
-				var email 		= data[a].email;
-				var url			= data[a].url;
+				var NAME   		= data[a].NAME;
+				var PZN 		= data[a].PZN;
+				var URL			= data[a].URL;
 				
 
 				html += "<tr>";
 					html += "<td>" + ID + "</td>";
-					html += "<td>" + name + "</td>";
-					html += "<td>" + email + "</td>";	
+					html += "<td>" + NAME + "</td>";
+					html += "<td>" + PZN + "</td>";	
 					html += "<td>" + 
 									"<form id='delete' method='Get' action=''>" + 
 										"<input type='hidden' name='deleteRow'  value="+ID+"/>" + 
-										"<button name='delete' class='delete' onclick='handleDeleteClick(event, "+ID+");'>Delete</button>" + 
+										"<button name='delete' class='delete' onclick='handleDeleteClick(event, "+ID+", this);'>Delete</button>" + 
 									"</form>" +
 									"<a href='show.php?ID="+ID+"'>Show</a><br>" + 
 									"<a href='edit.php?ID="+ID+"'>Edit</a><br>" +
-									"<a target='_blank' href='"+url+"'>URL</a>" +
+									"<a target='_blank' href='"+URL+"'>URL</a>" +
 							"</td>";
 				html += "</tr>";
 			}
@@ -300,15 +394,11 @@
 					document.getElementById("rows-count").innerHTML = data.length;
 					document.getElementById("service-text").innerHTML = 'Idealo products';
 			});
-
+			/////////// Pokazuje element na drugom mestu (edit-js) ///////////
 			
 		}
 
 	}
-
-
-    /////////// Pokazuje element na drugom mestu (edit-js) ///////////
-    
     
 	// ===========> END: DISPLAY Table from Database JS <===========
 
@@ -351,28 +441,28 @@
 			html += '<table border="1" cellspacing="0" cellpadding="0" id="myTable" id="pagination" class="sortable table pagination">' +
 				'<thead>' +
                      '<tr>'   +
-                        '<th>' + 'city_id' 	  + '</th>' +
-                        '<th>' + 'ity_name'   + '</th>' +
-                        '<th>' + 'state_id'   + '</th>' +
+                        '<th>' + 'id' 	  + '</th>' +
+                        '<th>' + 'name'   + '</th>' +
+                        '<th>' + 'Brand'   + '</th>' +
                         '<th>' + 'Action' 	  + '</th>' +
                    '</tr>' +
                 '</thead>';
 
 			for (var a = 0; a < data.length; a++) {
 
-				var city_id 			= data[a].city_id;
-				var city_name   		= data[a].city_name;
-				var state_id 			= data[a].state_id;
+				var id 					= data[a].id;
+				var name   			= data[a].name;
+				var BRAND 			= data[a].BRAND;
 				
 
 				html += "<tr>";
-					html += "<td>" + city_id   + "</td>";
-					html += "<td>" + city_name + "</td>";
-					html += "<td>" + state_id  + "</td>";	
+					html += "<td>" + id   + "</td>";
+					html += "<td>" + name + "</td>";
+					html += "<td>" + BRAND  + "</td>";	
 					html += "<td>" + 
 									"<form id='delete' method='post' action=''>" + 
-										"<input type='hidden' name='deleteRow'  value="+city_id+"/>" + 
-										"<button name='delete' class='delete' onclick='handleDeleteClick(event, "+city_id+");'>Delete</button>" + 
+										"<input type='hidden' name='deleteRow'  value="+id+"/>" + 
+										"<button name='delete' class='delete' onclick='handleDeleteClick(event, "+id+");'>Delete</button>" + 
 									"</form>"
 							"</td>";
 				html += "</tr>";
@@ -421,21 +511,32 @@
 			// html value
 			var html = "";
 
+			html += '<table border="1" cellspacing="0" cellpadding="0" id="myTable" id="pagination" class="sortable table pagination">' +
+				'<thead>' +
+                     '<tr>'   +
+                        '<th>' + 'id' 	  + '</th>' +
+                        '<th>' + 'name'   + '</th>' +
+                        '<th>' + 'Brand'   + '</th>' +
+                        '<th>' + 'Action' 	  + '</th>' +
+                   '</tr>' +
+                '</thead>';
+
+
 				for (var a = 0; a < data.length; a++) {
 
 					var ID 				= data[a].ID;
-					var name   			= data[a].name;
-					var email 			= data[a].email;
+					var NAME   			= data[a].NAME;
+					var EMAIL 			= data[a].EMAIL;
 					
 
 					html += "<tr>";
 						html += "<td>" + ID + "</td>";
-						html += "<td>" + name + "</td>";
-						html += "<td>" + email + "</td>";	
+						html += "<td>" + NAME + "</td>";
+						html += "<td>" + EMAIL + "</td>";	
 		                html +=  "<td>" + 
 											"<form id='delete' method='post' action=''>" + 
 												"<input type='hidden' name='deleteRow'  value="+ID+" />" + 
-												"<button name='delete' class='delete' onclick='handleDeleteClick(event, "+ID+");'>Delete</button>" +
+												"<button name='delete' class='delete' onclick='handleDeleteClick(event, "+ID+",this);'>Delete</button>" +
 											"</form>" +
 									"</td>";
 					html += "</tr>";
@@ -459,7 +560,7 @@
 
 
 
-	function handleDeleteClick(e, userId) {
+	function handleDeleteClick(e, userId, r) {
 	    e.preventDefault(); // Prevent default behaviour of this event (eg: submitting the form
 
 	    // Perform the AJAX request to delete this user
@@ -469,22 +570,30 @@
 	    // var delID		= "" + userId;
 		htmlD 			= "";
 
-	    if (confirm('Are you sure you want to delete this?') == true) {
+	    
 
 	        xmlhttp.onreadystatechange = function() {
 	            if(xmlhttp.readyState == 4 && xmlhttp.status == 200){
-	                document.getElementById("delete-response").innerHTML = "Successful DELETED";
+               		var i = r.parentNode.parentNode.parentNode.rowIndex;
+					document.getElementById("myTable").deleteRow(i);
 	            }
 	        }
 
 	        xmlhttp.open("GET", page, true);
 	        xmlhttp.send();
-	    } else {
-	    	document.getElementById("delete-response").innerHTML = "Sometning went wrong!";
-	    }
 
-	    document.getElementById("delete-response").innerHTML = htmlD;
-	}
+	    
+        // swal({
+        //     title: 'Are you sure?',
+        //     text: "You won't be able to revert this!",
+        //     type: 'warning',
+        //     showCancelButton: true,
+        //     confirmButtonColor: '#3085d6',
+        //     cancelButtonColor: '#d33',
+        //     confirmButtonText: 'Yes, delete it!'
+        // })
+    }
+	
 
 
  //  	// ===========> Count rows <===========

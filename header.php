@@ -10,7 +10,7 @@
     // Script display username, password nad email of user
 	$username = $_SESSION["username"];
 
-	$sql = "SELECT * FROM user_table WHERE username='$username'";
+	$sql = "SELECT * FROM login_table WHERE username='$username'";
 	$result = mysqli_query($con, $sql);
 
 	if($row = mysqli_fetch_array($result)) {

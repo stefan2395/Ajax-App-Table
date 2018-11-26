@@ -22,7 +22,7 @@
                  <?php
 
                 $id = $_GET['ID'];
-                $sql = "SELECT * FROM beta where ID in ($id)";
+                $sql = "SELECT * FROM person where ID in ($id)";
             
                 $result = mysqli_query($con, $sql);
 
@@ -40,13 +40,19 @@
                             </tr>
                             <tr>
                                 <th>Name</th>
-                                <td>".$row['name']."</td>
+                                <td>".$row['NAME']."</td>
                             </tr>
 
                             <tr>
-                                <th>Email</th>
-                                <td>".$row['email']."</td>
-                            </tr>";     
+                                <th>Pzn</th>
+                                <td>".$row['PZN']."</td>
+                            </tr>
+
+                            <tr>
+                                <th>Url</th>
+                                <td>".$row['URL']."</td>
+                            </tr>";
+
                     }
                
                 ?>

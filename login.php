@@ -16,7 +16,7 @@ if (isset($_POST['username']) and isset($_POST['password'])){
 $user = $_POST['username'];
 $pass = $_POST['password'];
 //3.1.2 Checking the values are existing in the database or not
-$query = "SELECT * FROM `user_table` WHERE username='$user' and password='$pass'";
+$query = "SELECT * FROM `login_table` WHERE username='$user' and password='$pass'";
  
 $result = mysqli_query($con, $query) or die(mysqli_error($con));
 $count = mysqli_num_rows($result);
