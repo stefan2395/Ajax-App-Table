@@ -14,10 +14,28 @@
 	$result = mysqli_query($con, $sql);
 
 	if($row = mysqli_fetch_array($result)) {
-	    $username = $row["username"];
-	    $password = $row["password"];
-	    $email 	  = $row["email"];
+	    $username   = $row["username"];
+	    $password   = $row["password"];
+	    $email 	    = $row["email"];
+	    $initials   = $row["initials"];
+	    $surname    = $row["surname"];
 	}
+	// END: Script display username, password, email, surname and initials of user
+
+
+
+	// Script display count added rows from user
+	$sqlCount = "SELECT count(*) user FROM person WHERE user = '".$_SESSION['username']."'";
+	$resultCount = mysqli_query($con, $sqlCount);
+
+ 	if ($row = mysqli_fetch_assoc($resultCount)) {
+
+     	$userCountRows = $row['user'];
+	}
+	// END: Script display count added rows from user
+
+
+
 
 ?>
 
@@ -33,3 +51,18 @@
 	 	<script src="node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
 
 </head>
+<body>
+	<header>
+	 	<a href="index.php">Home</a>
+
+		<div class="popup" onclick="popup()">My Account
+		  	<div class="popuptext" id="myPopup">
+		  		<a href="logout.php">
+            		<p>Logout</p>
+        		</a>
+        		<a href="profile.php">
+            		<p>Edit profile</p>
+        		</a>
+    		</div>
+		</div>
+	</header>

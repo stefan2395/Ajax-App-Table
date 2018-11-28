@@ -1,8 +1,11 @@
+/* line 1, C:/xampp/htdocs/Ajax-App-Table/scss/style.scss */
 li {
-  list-style: none; }
+  list-style: none;
+}
 
 /* =====> POPUP ACCOUNT CLICK <===== */
 /* The actual popup */
+/* line 14, C:/xampp/htdocs/Ajax-App-Table/scss/style.scss */
 .popup {
   position: relative;
   display: inline-block;
@@ -12,125 +15,216 @@ li {
   -ms-user-select: none;
   user-select: none;
   width: 100%;
-  text-align: right; }
-  .popup .popuptext {
-    visibility: hidden;
-    width: 15%;
-    background-color: #fff;
-    border: solid 1px #d5d5d5;
-    text-align: center;
-    border-radius: 6px;
-    padding: 8px 0;
-    position: absolute;
-    z-index: 1;
-    bottom: -80px;
-    right: 0;
-    margin-left: -80px; }
-    .popup .popuptext > a {
-      color: #525252;
-      text-decoration: none; }
+  text-align: right;
+}
+
+/* line 24, C:/xampp/htdocs/Ajax-App-Table/scss/style.scss */
+.popup .popuptext {
+  visibility: hidden;
+  width: 15%;
+  background-color: #fff;
+  border: solid 1px #d5d5d5;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: -115px;
+  right: 0;
+  margin-left: -80px;
+}
+
+/* line 37, C:/xampp/htdocs/Ajax-App-Table/scss/style.scss */
+.popup .popuptext > a {
+  color: #525252;
+  text-decoration: none;
+}
 
 /* Toggle this class - hide and show the popup */
+/* line 45, C:/xampp/htdocs/Ajax-App-Table/scss/style.scss */
 .popup .show {
   visibility: visible;
   -webkit-animation: fadeIn 1s;
-  animation: fadeIn 1s; }
+  animation: fadeIn 1s;
+}
 
 /* Add animation (fade in the popup) */
 @-webkit-keyframes fadeIn {
   from {
-    opacity: 0; }
+    opacity: 0;
+  }
   to {
-    opacity: 1; } }
+    opacity: 1;
+  }
+}
+
 @keyframes fadeIn {
   from {
-    opacity: 0; }
+    opacity: 0;
+  }
   to {
-    opacity: 1; } }
+    opacity: 1;
+  }
+}
+
 /* =====> END: POPUP ACCOUNT CLICK <===== */
 /* =====> TABLE STYLE <===== */
+/* line 69, C:/xampp/htdocs/Ajax-App-Table/scss/style.scss */
 .content {
-  width: 80%; }
-  .content > .select_container, .content .button_container {
-    width: 10%;
-    display: inline-block;
-    margin-bottom: 30px; }
+  width: 80%;
+}
 
+/* line 72, C:/xampp/htdocs/Ajax-App-Table/scss/style.scss */
+.content > .select_container, .content .button_container {
+  width: 10%;
+  display: inline-block;
+  margin-bottom: 30px;
+}
+
+/* line 79, C:/xampp/htdocs/Ajax-App-Table/scss/style.scss */
 .sortable {
   border-collapse: separate;
-  border-spacing: 0px; }
-  .sortable > thead {
-    background-color: #1F2739;
-    color: #0084ec;
-    font-size: 18px;
-    font-weight: bold;
-    border: none; }
-    .sortable > thead > tr {
-      text-align: left; }
-      .sortable > thead > tr > th {
-        padding: 20px;
-        border: none;
-        cursor: pointer;
-        -webkit-transition: color 1s; }
-        .sortable > thead > tr > th:hover {
-          color: green; }
-  .sortable > tbody > tr:nth-child(odd) {
-    background: #434972;
-    color: #d5d5d5; }
-  .sortable > tbody > tr:nth-child(even) {
-    background: #525252;
-    color: #d5d5d5; }
-  .sortable > tbody > tr > td {
-    text-align: left;
-    border: solid 1px #1F2739;
-    padding: 20px; }
-    .sortable > tbody > tr > td > a {
-      text-decoration: none;
-      color: white; }
-      .sortable > tbody > tr > td > a:hover {
-        text-decoration: underline;
-        color: blue; }
-    .sortable > tbody > tr > td:hover {
-      background: yellow;
-      transform: translate3d(5px, 5px, 5px);
-      transition-duration: 1s;
-      -webkit-transition-duration: 1s;
-      color: #434972;
-      box-shadow: -1px -1px #7b7b00, -2px -2px #7b7b00, -3px -3px #7b7b00, -4px -4px #7b7b00, -5px -5px #7b7b00; }
+  border-spacing: 0px;
+}
+
+/* line 82, C:/xampp/htdocs/Ajax-App-Table/scss/style.scss */
+.sortable > thead {
+  background-color: #1F2739;
+  color: #0084ec;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+}
+
+/* line 88, C:/xampp/htdocs/Ajax-App-Table/scss/style.scss */
+.sortable > thead > tr {
+  text-align: left;
+}
+
+/* line 90, C:/xampp/htdocs/Ajax-App-Table/scss/style.scss */
+.sortable > thead > tr > th {
+  padding: 20px;
+  border: none;
+  cursor: pointer;
+  -webkit-transition: color 1s;
+}
+
+/* line 95, C:/xampp/htdocs/Ajax-App-Table/scss/style.scss */
+.sortable > thead > tr > th:hover {
+  color: green;
+}
+
+/* line 104, C:/xampp/htdocs/Ajax-App-Table/scss/style.scss */
+.sortable > tbody > tr:nth-child(odd) {
+  background: #434972;
+  color: #d5d5d5;
+}
+
+/* line 109, C:/xampp/htdocs/Ajax-App-Table/scss/style.scss */
+.sortable > tbody > tr:nth-child(even) {
+  background: #525252;
+  color: #d5d5d5;
+}
+
+/* line 114, C:/xampp/htdocs/Ajax-App-Table/scss/style.scss */
+.sortable > tbody > tr > td {
+  text-align: left;
+  border: solid 1px #1F2739;
+  padding: 20px;
+}
+
+/* line 118, C:/xampp/htdocs/Ajax-App-Table/scss/style.scss */
+.sortable > tbody > tr > td > a {
+  text-decoration: none;
+  color: white;
+}
+
+/* line 121, C:/xampp/htdocs/Ajax-App-Table/scss/style.scss */
+.sortable > tbody > tr > td > a:hover {
+  text-decoration: underline;
+  color: blue;
+}
+
+/* line 126, C:/xampp/htdocs/Ajax-App-Table/scss/style.scss */
+.sortable > tbody > tr > td:hover {
+  background: yellow;
+  transform: translate3d(5px, 5px, 5px);
+  transition-duration: 1s;
+  -webkit-transition-duration: 1s;
+  color: #434972;
+  box-shadow: -1px -1px #7b7b00, -2px -2px #7b7b00, -3px -3px #7b7b00, -4px -4px #7b7b00, -5px -5px #7b7b00;
+}
 
 /* =====> END: TABLE STYLE <===== */
 /* =====> BUTTONS for display tables <===== */
+/* line 151, C:/xampp/htdocs/Ajax-App-Table/scss/style.scss */
 .buttons-container {
   border: solid 1px;
-  border-radius: 5px; }
-  .buttons-container > ul {
-    padding: 0;
-    border-bottom: solid 1px;
-    padding-bottom: 20px; }
-    .buttons-container > ul > li {
-      display: inline-block;
-      margin-left: 30px;
-      cursor: pointer;
-      color: blue; }
-      .buttons-container > ul > li > p {
-        font-size: 25px;
-        margin: 0; }
+  border-radius: 5px;
+}
+
+/* line 154, C:/xampp/htdocs/Ajax-App-Table/scss/style.scss */
+.buttons-container .buttons-click {
+  padding: 0;
+  border-bottom: solid 1px;
+  padding-bottom: 20px;
+}
+
+/* line 158, C:/xampp/htdocs/Ajax-App-Table/scss/style.scss */
+.buttons-container .buttons-click > li {
+  display: inline-block;
+  margin-left: 30px;
+  cursor: pointer;
+  color: blue;
+}
+
+/* line 163, C:/xampp/htdocs/Ajax-App-Table/scss/style.scss */
+.buttons-container .buttons-click > li > p {
+  font-size: 25px;
+  margin: 0;
+}
 
 /* =====> END: BUTTONS for display tables <===== */
 /* =====> CONTAINER with SERVICE and USER info <===== */
+/* line 180, C:/xampp/htdocs/Ajax-App-Table/scss/style.scss */
 .service-info .user-info, .service-info .img-service {
   display: inline-block;
   width: 48%;
-  vertical-align: middle; }
+  vertical-align: middle;
+}
+
+/* line 185, C:/xampp/htdocs/Ajax-App-Table/scss/style.scss */
 .service-info .img-service {
-  text-align: right; }
+  text-align: right;
+}
+
+/* line 188, C:/xampp/htdocs/Ajax-App-Table/scss/style.scss */
 .service-info .user-info {
-  text-align: left; }
-  .service-info .user-info > tbody > tr {
-    line-height: 30px; }
-    .service-info .user-info > tbody > tr > th {
-      padding-right: 30px; }
+  text-align: left;
+}
+
+/* line 191, C:/xampp/htdocs/Ajax-App-Table/scss/style.scss */
+.service-info .user-info > tbody > tr {
+  line-height: 30px;
+}
+
+/* line 193, C:/xampp/htdocs/Ajax-App-Table/scss/style.scss */
+.service-info .user-info > tbody > tr > th {
+  padding-right: 30px;
+}
 
 /* =====> END: CONTAINER with SERVICE and USER info <===== */
+/* line 204, C:/xampp/htdocs/Ajax-App-Table/scss/style.scss */
+.account-info {
+  border-right: solid 1px;
+  padding-bottom: 40px;
+}
 
-/*# sourceMappingURL=style.css.map */
+/* line 209, C:/xampp/htdocs/Ajax-App-Table/scss/style.scss */
+.change-password, .account-info {
+  display: inline-block;
+  width: 30%;
+  vertical-align: top;
+}
+
+/*# sourceMappingURL=../css/style.map */

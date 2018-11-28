@@ -1,16 +1,7 @@
 <?php include 'header.php'  ?>
-<body>
 	
 
 	<div class="content">
-
-		<div class="popup" onclick="popup()">My Account
-		  	<div class="popuptext" id="myPopup">
-		  		<a href="logout.php">
-            		<p>Logout</p>
-        		</a>
-    		</div>
-		</div>
 	 	
 
         <div class="welcome-title">
@@ -25,7 +16,7 @@
     	<div class="buttons-container"> 
 
     		<!-- Button for display tables -->
-			<ul>
+			<ul class="buttons-click">
 				<li><p id="all-click" onclick="toggleVisibility('All'); ">All services</p></li>
     			<li><p id="idealo-click" onclick="toggleVisibility('Idealo');">Idealo</p></li>
 				<li><p id="medizine-click" onclick="toggleVisibility('Medizine');">Medizine</p></li>
@@ -134,7 +125,7 @@
 		
 	</div>
 
-
+<?php include 'footer.php'; ?>
 </body>
 </html>
 
@@ -238,15 +229,6 @@
     // ===========> END: Sort table --> FROM w3s site <===========
 
 
-
-
-
-	// ===========>  When the user clicks on div, open the popup, ACCOUNT BUTTON <===========
-	function popup() {
-	    var popup = document.getElementById("myPopup");
-	    popup.classList.toggle("show");
-	}
-	// ===========> END: When the user clicks on div, open the popup, ACCOUNT BUTTON <===========
 
 
 
@@ -441,24 +423,24 @@
 			html += '<table border="1" cellspacing="0" cellpadding="0" id="myTable" id="pagination" class="sortable table pagination">' +
 				'<thead>' +
                      '<tr>'   +
-                        '<th>' + 'id' 	  + '</th>' +
-                        '<th>' + 'name'   + '</th>' +
-                        '<th>' + 'Brand'   + '</th>' +
+                        '<th>' + 'id' 	      + '</th>' +
+                        '<th>' + 'name'       + '</th>' +
+                        '<th>' + 'Brand'      + '</th>' +
                         '<th>' + 'Action' 	  + '</th>' +
                    '</tr>' +
                 '</thead>';
 
 			for (var a = 0; a < data.length; a++) {
 
-				var id 					= data[a].id;
-				var name   			= data[a].name;
-				var BRAND 			= data[a].BRAND;
+				var id 			= data[a].id;
+				var nickname    = data[a].nickname;
+				var lastname 	= data[a].lastname;
 				
 
 				html += "<tr>";
 					html += "<td>" + id   + "</td>";
-					html += "<td>" + name + "</td>";
-					html += "<td>" + BRAND  + "</td>";	
+					html += "<td>" + nickname + "</td>";
+					html += "<td>" + lastname  + "</td>";	
 					html += "<td>" + 
 									"<form id='delete' method='post' action=''>" + 
 										"<input type='hidden' name='deleteRow'  value="+id+"/>" + 

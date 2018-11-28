@@ -2,7 +2,7 @@
 
 	include("connection.php");
 
-	$result = mysqli_query($con,"SELECT * FROM app_table");
+	$result = mysqli_query($con,"SELECT * FROM medizine");
 
 	$data = array();
 	while ($row = mysqli_fetch_assoc($result)) {

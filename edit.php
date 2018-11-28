@@ -16,7 +16,6 @@
 
 <?php include 'header.php'  ?>
 
-	<a href="index.php">HOME</a>
 	<div class="content-table">
         <div class="welcome-title">
 			<h3>Welcome 
@@ -84,6 +83,7 @@
 
 	</div>
 
+<?php include 'footer.php'; ?>
 </body>
 </html>
 

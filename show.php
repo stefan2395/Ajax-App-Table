@@ -4,9 +4,7 @@
 
 <body>
 <div class="content-table">
-    <div>
-        <a href="index.php">Home</a>
-    </div>
+
     <div class="show-table-container">
 
         <div class="details-buttons-container">
@@ -61,6 +59,7 @@
     </div>
 </div>
  
+<?php include 'footer.php'; ?>
 </body>
 </html>
 

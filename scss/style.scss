@@ -31,7 +31,7 @@ $darkGrey: #525252;
 	    padding: 8px 0;
 	    position: absolute;
 	    z-index: 1;
-	    bottom: -80px;
+	    bottom: -115px;
 	    right: 0;
 	    margin-left: -80px;
 	    & > a {
@@ -151,7 +151,7 @@ $darkGrey: #525252;
 .buttons-container {
 	border: solid 1px;
 	border-radius: 5px;
-	& > ul {
+	.buttons-click {
 		padding: 0;
 		border-bottom: solid 1px;
 		padding-bottom: 20px;
@@ -199,3 +199,15 @@ $darkGrey: #525252;
 }
 
 /* =====> END: CONTAINER with SERVICE and USER info <===== */
+
+
+.account-info {
+	border-right: solid 1px;
+	padding-bottom: 40px;
+}
+
+.change-password, .account-info {
+	display: inline-block;
+	width: 30%;
+	vertical-align: top;
+}
