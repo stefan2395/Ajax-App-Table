@@ -2,6 +2,8 @@
  	// Connection for user. Same connection like connection.php, but with sessin_start();
 	include 'conection-user.php';
 	  
+
+
 	// Back user to login page if not logen in
   	if (!isset($_SESSION['username'])){
         header('Location: login.php');
@@ -14,14 +16,15 @@
 	$result = mysqli_query($con, $sql);
 
 	if($row = mysqli_fetch_array($result)) {
+		$id   		= $row["id"];
 	    $username   = $row["username"];
 	    $password   = $row["password"];
 	    $email 	    = $row["email"];
 	    $initials   = $row["initials"];
 	    $surname    = $row["surname"];
+	    $last_login = $row["last_login"];
 	}
 	// END: Script display username, password, email, surname and initials of user
-
 
 
 	// Script display count added rows from user
@@ -35,7 +38,14 @@
 	// END: Script display count added rows from user
 
 
+	// Script display date and time last update row from database --> i call it in index.php -> <table> Idealo
+	$sqlDataUdate = "SELECT * FROM person WHERE id IN (SELECT id FROM person WHERE update_row = (SELECT MAX(update_row) FROM person)) ORDER BY id DESC";
+	$resultDataUdate = mysqli_query($con, $sqlDataUdate);
 
+	if($rowDataUpdate = mysqli_fetch_array($resultDataUdate)) {
+		$updateRow = $rowDataUpdate['update_row'];
+	}
+	// END: Script display date and time last update row from database --> i call it in index.php -> <table> Idealo
 
 ?>
 

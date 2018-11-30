@@ -11,37 +11,44 @@ require_once 'conection-user.php';
 
 //3. If the form is submitted or not.
 //3.1 If the form is submitted
-if (isset($_POST['username']) and isset($_POST['password'])){
-//3.1.1 Assigning posted values to variables.
-$user = $_POST['username'];
-$pass = $_POST['password'];
-//3.1.2 Checking the values are existing in the database or not
-$query = "SELECT * FROM `login_table` WHERE username='$user' and password='$pass'";
- 
-$result = mysqli_query($con, $query) or die(mysqli_error($con));
-$count = mysqli_num_rows($result);
-//3.1.2 If the posted values are equal to the database values, then session will be created for the user.
-if ($count == 1){
-$_SESSION['username'] = $user;
-}else{
-//3.1.3 If the login credentials doesn't match, he will be shown with an error message.
-$fmsg = "Invalid Login Credentials.";
-}
+if (isset($_POST['username']) and isset($_POST['password'])) {
+	//3.1.1 Assigning posted values to variables.
+	$user = $_POST['username'];
+	$pass = $_POST['password'];
+	//3.1.2 Checking the values are existing in the database or not
+	$query = "SELECT * FROM login_table WHERE username = '$user' and password = '$pass'";
+	 
+	$result = mysqli_query($con, $query) or die(mysqli_error($con));
+	$count  = mysqli_num_rows($result);
+
+
+	//3.1.2 If the posted values are equal to the database values, then session will be created for the user.
+	if ($count == 1) {
+		$_SESSION['username'] = $user;
+	}else {
+		//3.1.3 If the login credentials doesn't match, he will be shown with an error message.
+		$fmsg = "Invalid Login Credentials.";
+	}
 }
 //3.1.4 if the user is logged in Greets the user with message
 if (isset($_SESSION['username'])){
 	$user = $_SESSION['username'];
+
 	header('Location: index.php');
- 
+
+ 	$queryDate = "UPDATE login_table SET last_login = NOW() WHERE username = '$user' ";
+	mysqli_query($con, $queryDate);
+	
 }else{
 
 	if (!empty($user)) {
 
-		echo "<h3 style='color:red;'>Error username or password</h3>";
+		echo $errorMsg = "<h3 style='color:red;'>Error username or password</h3>";
 
 	}
 	// echo "Error to login";
 }
+
 
 
 ?>

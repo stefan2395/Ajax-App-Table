@@ -72,7 +72,6 @@
     document.getElementById('checkboxes').addEventListener('change', function(e) {
         var el = e.target;
         var inputs = document.getElementById('checkboxes').getElementsByTagName('input');
-        
         // If 'all' was clicked
         if (el.id === 'checkAll') {
         
@@ -81,8 +80,9 @@
             
                 // Set each input's value to 'all'.
                 input.checked = el.checked;
-                document.getElementById("idealoDiv").style.display = 'block';
+                document.getElementById("idealoDiv").style.display   = 'block';
                 document.getElementById("medizineDiv").style.display = 'block';
+               
             }
         }
 

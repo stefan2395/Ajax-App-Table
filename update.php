@@ -2,14 +2,15 @@
 
 	include'connection.php';
 
-	if(isset($_POST['save'])) {
+	if($_GET['ID']) {
 
-		$NAME  		= $_POST['NAME'];
-		$PZN 		= $_POST['PZN'];
-		$URL 		= $_POST['URL'];
-		$id    		= $_POST['ID'];
+		$NAME 		= $_GET['name'];
+		$PZN  		= $_GET['pzn'];
+		$URL 	 	= $_GET['url'];
+		$commentar  = $_GET['commentar'];
+		$id    		= $_GET['ID'];
 
-		$sql = "UPDATE person SET NAME = '$NAME', PZN = '$PZN', URL = '$URL' WHERE ID = $id";
+		$sql = "UPDATE person SET NAME = '$NAME', PZN = '$PZN', URL = '$URL', commentar = '$commentar' WHERE ID = $id";
 		$con->query($sql);
 
 		echo json_encode($sql);

@@ -1,5 +1,5 @@
 <?php 
-	// include 'header.php';
+	
 	require_once 'connection.php';
 
 	if($_GET['ID']) {
@@ -11,7 +11,6 @@
 		$data = $result->fetch_assoc();
 
 		$con->close();
-
 	?>
 
 <?php include 'header.php'  ?>
@@ -41,18 +40,11 @@
 						<h3>Edit product</h3>
 					</div>
 
-					<div class="save-delete">	
-				</div>
+					<div class="save-delete"></div>
 
-				<form action="" method="POST">
-
-						<input type="hidden" name="ID" id="ID" value="<?php echo $data['ID']?>" />
-						<div class="save">
-							<input name="save" id="save" type="submit" value="Save" onclick='handleUpdateClick(<?php echo $data['ID']?>);'>
-								<!-- <img src="img/save.svg" alt=""> -->
-								
-							
-						</div>
+					<h3 style="cursor: pointer; color: green;" onclick='handleUpdateClick(<?php echo $data['ID']?>);'>Save</h3>
+     				<h3 style="cursor: pointer; color: red;" onclick="discard();">Discard</h3>
+						<!-- <input type="hidden" name="ID" id="ID" value="<?php echo $data['ID']?>" /> -->
 					</div>
 				
 
@@ -60,25 +52,32 @@
 
 						<tr>
 							<th>Name</th>
-							<td><input type="text" id="NAME" name="NAME" placeholder="NAME" value="<?php echo $data['NAME'] ?>" /></td>
+							<td><input type="text" id="name" name="name" placeholder="NAME" value="<?php echo $data['NAME'] ?>" /></td>
 						</tr>
 
 						<tr>
 							<th>Pzn</th>
-							<td><input rows="4" id="PZN" type="text" name="PZN" placeholder="PZN" value="<?php echo $data['PZN'] ?>"></input></td>
+							<td><input id="pzn" type="text" name="pzn" placeholder="PZN" value="<?php echo $data['PZN'] ?>"></input></td>
 						</tr>
 
 						<tr>
 							<th>URL</th>
-							<td><input rows="4" id="URL" type="text" name="URL" placeholder="URL" value="<?php echo $data['URL'] ?>"></input></td>
-						</tr
+							<td><input id="url" type="text" name="url" placeholder="URL" value="<?php echo $data['URL'] ?>"></input></td>
+						</tr>
 
 					</table>
-			
-				</form>
+				</div>
+
+			<div>
+				<p><?php echo $initials; ?></p>
+				<p><?php echo $data['update_row']; ?></p>
+
+				<h4>Commentar</h4>
+				<input id="commentar" type="text" name="commentar" placeholder="commentar" value="<?php echo $data['commentar'] ?>"></input>
+			</div>
 
 		<div id="update-response"></div>
-		<div id="txtHint"></div>
+
 		</fieldset>
 
 	</div>
@@ -93,39 +92,71 @@
 
 
 <script>
+
+   	// ===========> Update script <===========
 	function handleUpdateClick(updateId) {
 
-	    var NAME		= document.getElementById("NAME").value;
-	    var PZN			= document.getElementById("PZN").value;
-	    var URL			= document.getElementById("URL").value;
-	    var save		= document.getElementById("save");
+	    var name		= document.getElementById("name").value;
+	    var pzn			= document.getElementById("pzn").value;
+	    var url			= document.getElementById("url").value;
+	    var commentar   = document.getElementById("commentar").value;
+	    // var ID 			= document.getElementById("ID").value;
 
 	    // Perform the AJAX request to update this use
 	    var delRow 		= document.getElementById("updateRow");
-	    var varsSend	= "ID=" + updateId + "&NAME=" + NAME + "&PZN=" + PZN + "&URL" + URL + "&save" + save;
-	    var page 		= "update.php";
+	    // var varsSend	= "ID=" + updateId + "&name=" + name + "&pzn=" + pzn + "&url" + url;
+	    var page 		= "update.php?ID=" + updateId + "&name=" + name + "&pzn=" + pzn + "&url=" + url + "&commentar=" + commentar;
 	    var xmlhttp 	= new XMLHttpRequest();
 	    // var delID		= "" + userId;
 		htmlD 			= "";
 
-		xmlhttp.open("POST", page, true);
-        xmlhttp.send(varsSend);
+		xmlhttp.open("GET", page, true);
+        xmlhttp.send();
 
-	    if (confirm('Are you sure you want to SAVE this?') == true) {
+	  
 
 	        xmlhttp.onreadystatechange = function() {
 	            if(xmlhttp.readyState == 4 && xmlhttp.status == 200){
-	                document.getElementById("update-response").innerHTML = "Successful SAVED";    
-	            }
-	        }
-
-	        
-	    } else {
-	    	document.getElementById("update-response").innerHTML = "Sometning went wrong!";
-	    }
-
-	    document.getElementById("update-response").innerHTML = htmlD;
+            	 	// Save button sweetalert2
+		            swal({
+		                position: 'top-end',
+		                type: 'success',
+		                title: 'Your work has been saved',
+		                showConfirmButton: false,
+		                timer: 1500
+		            }).then(() => {
+		                window.location = 'index.php';
+		            })
+		            // EDN: Save button sweetalert2 
+	            } 
+	        }  
 	}
+	// ===========> END: Update script <===========
+
+
+
+
+
+   	// ===========> Sweetalert2 <===========
+
+    // Discard button
+    function discard() {
+        swal({
+            title: 'Discard changes?',
+            text: "You won't be able to revert this!",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, discard it!'
+        }).then((result) => {
+            if (result.value) {
+                window.location = 'index.php';
+            }
+        })
+    }
+
+    // ===========> END: Sweetalert2 <===========
 
 
 

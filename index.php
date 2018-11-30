@@ -52,6 +52,10 @@
 	        		<tr>
 	        			<th>URL</th><td id="to-copy">Idealo.de <img width="20" height="20" src="img/copy.png" onClick="CopyToClipboard('to-copy')"> </td>
 	        		</tr>  	
+
+	        		<tr>
+	        			<th>last updated</th><td><?php echo $updateRow ?> <a href="update-history.php">Add/View updates</a></td>
+	        		</tr>
 	    		</table>
 
 	        	<div class="img-service"> 
@@ -73,7 +77,8 @@
 
 	        		<tr>
 	        			<th>URL</th><td id="to-copy1">Medizine.de <img width="20" height="20" src="img/copy.png" onClick="CopyToClipboard1('to-copy1')"></td>
-	        		</tr>    	
+	        		</tr> 
+   	
 	    		</table>
 
 	        	<div class="img-service"> 
@@ -118,10 +123,10 @@
 		<input type="text" id="mySearch" onkeyup="Search()" placeholder="Search for products.." title="Type in a name">
 		<!-- SHOW tables when click on buttons -->
 		<h3>List of products:</h3> <p id="Idealo-text" style="display: none;"> Idealo </p>
-
+		
 		<div id="responsveTable" class="sortDiv"></div>
 
-
+	
 		
 	</div>
 
@@ -371,10 +376,13 @@
 			html += '</table>';
 
 
+
+
+
 			document.getElementById("idealo-click").addEventListener("click",function (){
 					document.getElementById("responsveTable").innerHTML = html;
-					document.getElementById("rows-count").innerHTML = data.length;
-					document.getElementById("service-text").innerHTML = 'Idealo products';
+					document.getElementById("rows-count").innerHTML 	= data.length;
+					document.getElementById("service-text").innerHTML 	= 'Idealo products';
 			});
 			/////////// Pokazuje element na drugom mestu (edit-js) ///////////
 			
@@ -503,6 +511,8 @@
                    '</tr>' +
                 '</thead>';
 
+               
+
 
 				for (var a = 0; a < data.length; a++) {
 
@@ -553,7 +563,6 @@
 		htmlD 			= "";
 
 	    
-
 	        xmlhttp.onreadystatechange = function() {
 	            if(xmlhttp.readyState == 4 && xmlhttp.status == 200){
                		var i = r.parentNode.parentNode.parentNode.rowIndex;
@@ -564,25 +573,28 @@
 	        xmlhttp.open("GET", page, true);
 	        xmlhttp.send();
 
-	    
-        // swal({
-        //     title: 'Are you sure?',
-        //     text: "You won't be able to revert this!",
-        //     type: 'warning',
-        //     showCancelButton: true,
-        //     confirmButtonColor: '#3085d6',
-        //     cancelButtonColor: '#d33',
-        //     confirmButtonText: 'Yes, delete it!'
-        // })
+	   //      swal({
+				//   title: 'Are you sure?',
+				//   text: "You won't be able to revert this!",
+				//   type: 'warning',
+				//   showCancelButton: true,
+				//   confirmButtonColor: '#3085d6',
+				//   cancelButtonColor: '#d33',
+				//   confirmButtonText: 'Yes, delete it!'
+				// }).then((result) => {
+				//   if (result.value) {
+				//     swal(
+				//       'Deleted!',
+				//       'Your file has been deleted.',
+				//       'success'
+				//     )
+				//   }
+				// })
     }
 	
 
 
- //  	// ===========> Count rows <===========
- //    var rows = document.getElementById("myTable").getElementsByTagName("tbody")[0].getElementsByTagName("tr").length;
- //    console.log(rows);
- //    document.getElementById("rows-count").innerHTML = rows;
-	// // ===========> END Count rows <===========
+
 
 </script>
 
