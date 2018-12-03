@@ -23,7 +23,7 @@
 
         <tbody>
             <?php 
-            $sqlNoteUdate = "SELECT * FROM person WHERE user = '".$_SESSION['username']."'";
+            $sqlNoteUdate = "SELECT * FROM person WHERE user = '".$_SESSION['username']."' AND update_row != '' ";
             $resultNoteUdate = mysqli_query($con, $sqlNoteUdate);
 
             while($rowNoteUdate = mysqli_fetch_assoc($resultNoteUdate)) { 

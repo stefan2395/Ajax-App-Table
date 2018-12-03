@@ -147,29 +147,22 @@
 <script type="text/javascript">
 
 	// ===========>  Search table --> FROM w3s site <===========
-
-	/* ******* 											*******
-	   ******* BAG --> Trazi u tabeli samo po ID koloni ******* 
-	   ******* 											******* */
-	   
 	function Search() {
-		var input, filter, table, tr, td, j;
-		input 	= document.getElementById("mySearch");
-		filter 	= input.value.toUpperCase();
-		table 	= document.getElementById("myTable");
-		tr 		= table.getElementsByTagName("tr");
-		
+		const input = document.getElementById('mySearch')
+		const filter = input.value.toLowerCase()
+		const table = document.getElementById('search')
+		const tr = [...table.getElementsByTagName('tr')]
 
-	  	for (i = 0; i < tr.length; i++) {
-		    td = tr[i].getElementsByTagName("td")[0];
-		    if (td) {
-		      	if (td.innerHTML.toUpperCase().indexOf(filter.toUpperCase()) > -1) {
-		        	tr[i].style.display = "";
-		      	} else {
-		      		tr[i].style.display = "none";
-		      	}
-		    }       
-	  	}
+		tr.forEach((t) => {
+			const foundMatch = [...t.getElementsByTagName('td')].some((td) => {
+		  	return td.innerHTML.toLowerCase().indexOf(filter) > -1
+		})
+			if (foundMatch) {
+			  	t.style.display = ''
+			} else {
+			  	t.style.display = 'none'
+			}
+		})
 	}
 	// ===========>  Search table --> FROM w3s site <===========
 
@@ -348,7 +341,7 @@
                    '</tr>' +
                 '</thead>';
 
-            html += "<tbody>";
+            html += "<tbody id='search'>";
 			for (var a = 0; a < data.length; a++) {
 
 				var ID 			= data[a].ID;
@@ -438,6 +431,7 @@
                    '</tr>' +
                 '</thead>';
 
+            html += '<tbody id="search">';
 			for (var a = 0; a < data.length; a++) {
 
 				var id 			= data[a].id;
@@ -450,13 +444,11 @@
 					html += "<td>" + nickname + "</td>";
 					html += "<td>" + lastname  + "</td>";	
 					html += "<td>" + 
-									"<form id='delete' method='post' action=''>" + 
-										"<input type='hidden' name='deleteRow'  value="+id+"/>" + 
-										"<button name='delete' class='delete' onclick='handleDeleteClick(event, "+id+");'>Delete</button>" + 
-									"</form>"
+									"<button name='delete' class='delete' onclick='handleDeleteClick(event, "+id+");'>Delete</button>" + 
 							"</td>";
 				html += "</tr>";
 			}
+			html += '</tbody>';
 			html += '</table>';
 
 			document.getElementById("medizine-click").addEventListener("click",function (){
@@ -553,18 +545,29 @@
 
 
 	function handleDeleteClick(e, userId, r) {
-	    e.preventDefault(); // Prevent default behaviour of this event (eg: submitting the form
 
-	    // Perform the AJAX request to delete this user
-	    var delRow 		= document.getElementById("deleteRow");
-	    var page 		= "delete.php?ID=" + userId;
-	    var xmlhttp 	= new XMLHttpRequest();
-	    // var delID		= "" + userId;
-		htmlD 			= "";
+		swal({
+			title: 'Are you sure?',
+			text: "You won't be able to revert this!",
+			type: 'warning',
+			showCancelButton: true,
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			confirmButtonText: 'Yes, delete it!'
+		})
 
-	    
+		if (confirmButtonText) {
+    		e.preventDefault(); // Prevent default behaviour of this event (eg: submitting the form
+
+		    // Perform the AJAX request to delete this user
+		    var delRow 		= document.getElementById("deleteRow");
+		    var page 		= "delete.php?ID=" + userId;
+		    var xmlhttp 	= new XMLHttpRequest();
+		    // var delID		= "" + userId;
+			htmlD 			= "";
+
 	        xmlhttp.onreadystatechange = function() {
-	            if(xmlhttp.readyState == 4 && xmlhttp.status == 200){
+	            if(xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                		var i = r.parentNode.parentNode.parentNode.rowIndex;
 					document.getElementById("myTable").deleteRow(i);
 	            }
@@ -573,23 +576,13 @@
 	        xmlhttp.open("GET", page, true);
 	        xmlhttp.send();
 
-	   //      swal({
-				//   title: 'Are you sure?',
-				//   text: "You won't be able to revert this!",
-				//   type: 'warning',
-				//   showCancelButton: true,
-				//   confirmButtonColor: '#3085d6',
-				//   cancelButtonColor: '#d33',
-				//   confirmButtonText: 'Yes, delete it!'
-				// }).then((result) => {
-				//   if (result.value) {
-				//     swal(
-				//       'Deleted!',
-				//       'Your file has been deleted.',
-				//       'success'
-				//     )
-				//   }
-				// })
+	        swal(
+				'Deleted!',
+				'Your file has been deleted.',
+				'success'
+		    )
+		} 
+	 
     }
 	
 

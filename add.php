@@ -10,10 +10,10 @@
      <h3 style="cursor: pointer; color: red;" onclick="discard();">Discard</h3>
 
     <div id="checkboxes">
-        <input type="checkbox" id="checkAll">All Services<br/>
+        <input type="checkbox" id="checkAll" checked="checked">All Services<br/>
 
-        <input type="checkbox" id="idealoCheck" name="c1">Idealo
-        <input type="checkbox" id="medizineCheck" name="c2">Medizine
+        <input type="checkbox" id="idealoCheck" name="c1" checked="checked">Idealo
+        <input type="checkbox" id="medizineCheck" name="c2" checked="checked">Medizine
     </div>
 
         <div class="form-popup">
@@ -21,7 +21,7 @@
                 <!-- <a href="#" type="button" class="btn cancel">&times;</a> -->
 
                 <!-- IDEALO input fields -->
-                <ul id="idealoDiv" style="display:none">
+                <ul id="idealoDiv">
                     
                     <li><p id="require"></p>
                         <label>Name <span style="color: blue;">IDEALO</span></label><br>
@@ -38,7 +38,7 @@
 
 
                 <!-- MEDIZINE input fields -->
-                <ul id="medizineDiv" style="display:none">
+                <ul id="medizineDiv" >
 
                     <li>
                         <label>URL <span style="color: red;">MEDIZINE</span></label><br>
