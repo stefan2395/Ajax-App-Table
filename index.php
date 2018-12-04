@@ -355,10 +355,7 @@
 					html += "<td>" + NAME + "</td>";
 					html += "<td>" + PZN + "</td>";	
 					html += "<td>" + 
-									"<form id='delete' method='Get' action=''>" + 
-										"<input type='hidden' name='deleteRow'  value="+ID+"/>" + 
-										"<button name='delete' class='delete' onclick='handleDeleteClick(event, "+ID+", this);'>Delete</button>" + 
-									"</form>" +
+										"<button name='delete' class='delete' onclick='handleDeleteClick(event, "+ID+", this);'>Delete</button>" + 			
 									"<a href='show.php?ID="+ID+"'>Show</a><br>" + 
 									"<a href='edit.php?ID="+ID+"'>Edit</a><br>" +
 									"<a target='_blank' href='"+URL+"'>URL</a>" +
@@ -517,11 +514,8 @@
 						html += "<td>" + ID + "</td>";
 						html += "<td>" + NAME + "</td>";
 						html += "<td>" + EMAIL + "</td>";	
-		                html +=  "<td>" + 
-											"<form id='delete' method='post' action=''>" + 
-												"<input type='hidden' name='deleteRow'  value="+ID+" />" + 
-												"<button name='delete' class='delete' onclick='handleDeleteClick(event, "+ID+",this);'>Delete</button>" +
-											"</form>" +
+		                html +=  "<td>" +  
+										"<button name='delete' class='delete' onclick='handleDeleteClick(event, "+ID+",this);'>Delete</button>" +
 									"</td>";
 					html += "</tr>";
 				}
@@ -554,35 +548,38 @@
 			confirmButtonColor: '#3085d6',
 			cancelButtonColor: '#d33',
 			confirmButtonText: 'Yes, delete it!'
+		}).then(function (result) {
+				if (result.value) {
+				e.preventDefault(); // Prevent default behaviour of this event (eg: submitting the form
+
+			    // Perform the AJAX request to delete this user
+			    var delRow 		= document.getElementById("deleteRow");
+			    var page 		= "delete.php?ID=" + userId;
+			    var xmlhttp 	= new XMLHttpRequest();
+			    // var delID		= "" + userId;
+				htmlD 			= "";
+
+		        xmlhttp.onreadystatechange = function() {
+		            if(xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+	               		var i = r.parentNode.parentNode.rowIndex;
+						document.getElementById("myTable").deleteRow(i);
+		            }
+		        }
+
+		        xmlhttp.open("GET", page, true);
+		        xmlhttp.send();
+
+		        // Message if deletet row in table
+		        swal(
+			      'Deleted!',
+			      'Your file has been deleted.',
+			      'success'
+			    )
+		    } 
 		})
 
-		if (confirmButtonText) {
-    		e.preventDefault(); // Prevent default behaviour of this event (eg: submitting the form
+    		
 
-		    // Perform the AJAX request to delete this user
-		    var delRow 		= document.getElementById("deleteRow");
-		    var page 		= "delete.php?ID=" + userId;
-		    var xmlhttp 	= new XMLHttpRequest();
-		    // var delID		= "" + userId;
-			htmlD 			= "";
-
-	        xmlhttp.onreadystatechange = function() {
-	            if(xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-               		var i = r.parentNode.parentNode.parentNode.rowIndex;
-					document.getElementById("myTable").deleteRow(i);
-	            }
-	        }
-
-	        xmlhttp.open("GET", page, true);
-	        xmlhttp.send();
-
-	        swal(
-				'Deleted!',
-				'Your file has been deleted.',
-				'success'
-		    )
-		} 
-	 
     }
 	
 
