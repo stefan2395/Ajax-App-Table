@@ -65,6 +65,7 @@
 	<header>
 	 	<a href="index.php">Home</a>
 
+		<!-- Script JS is on the footer -->
 		<div class="popup" onclick="popup()">My Account
 		  	<div class="popuptext" id="myPopup">
 		  		<a href="logout.php">

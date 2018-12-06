@@ -23,19 +23,19 @@
 
         <tbody>
             <?php 
-            $sqlNoteUdate = "SELECT * FROM person WHERE user = '".$_SESSION['username']."' AND update_row != '' ";
-            $resultNoteUdate = mysqli_query($con, $sqlNoteUdate);
+                $sqlNoteUdate = "SELECT * FROM person WHERE user = '".$_SESSION['username']."' AND update_row != '' ";
+                $resultNoteUdate = mysqli_query($con, $sqlNoteUdate);
 
-            while($rowNoteUdate = mysqli_fetch_assoc($resultNoteUdate)) { 
-            ?>
+                while($rowNoteUdate = mysqli_fetch_assoc($resultNoteUdate)) { 
+                ?>
 
-            <tr>
-                <td><?php echo $rowNoteUdate['update_row']; ?></td>
-                <td><?php echo $initials; ?></td>
-                <td><?php echo $rowNoteUdate['commentar'];; ?></td>3
-            </tr>
+                <tr>
+                    <td><?php echo $rowNoteUdate['update_row']; ?></td>
+                    <td><?php echo $initials; ?></td>
+                    <td><?php echo $rowNoteUdate['commentar'];; ?></td>3
+                </tr>
 
-        <?php } ?>
+            <?php } ?>
         </tbody>
 
     </table>

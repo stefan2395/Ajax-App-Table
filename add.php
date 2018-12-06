@@ -21,26 +21,38 @@
                 <!-- <a href="#" type="button" class="btn cancel">&times;</a> -->
 
                 
-                <ul id="idealoDiv" class="result">
+                <ul id="idealoDiv">
                     
                     <li class="idealo"><p id="require"></p><!-- IDEALO input fields -->
-                        <label>Name <span style="color: blue;">IDEALO</span></label><br>
+                        <label>Name <span style="color: blue;">IDEALO</span> 
+
+                            <span class="popup1 result" id="click">!
+                                 <span class="popuptext1">A Simple Popup!</span>
+                            </span>
+
+                        </label><br>
                         <input type="text" name="name" id="name">   
                     </li>
 
                     <li class="idealo"><!-- IDEALO input fields -->
-                        <label>Pzn <span style="color: blue;">IDEALO</span></label><br>
+                        <label>Pzn <span style="color: blue;">IDEALO</span> 
+
+                            <span  class="result popup1">!
+                                <span class="popuptext1" >This is a simple popup for idealo app!</span>
+                            </span> 
+
+                        </label><br>
                         <input type="text" name="pzn" id="pzn">
                     </li>
                 
 
                     <li class="medizine"><!-- MEDIZINE input fields -->
-                        <label>URL <span style="color: red;">MEDIZINE</span></label><br>
+                        <label>URL <span style="color: red;">MEDIZINE</span> <span>!</span> </label><br>
                         <input type="text" name="url" id="url">
                     </li>
 
                     <li class="idealo"><!-- IDEALO input fields -->
-                        <label>Brand(test) <span style="color: blue;">IDEALO</span></label><br>
+                        <label>Brand(test) <span style="color: blue;">IDEALO</span> <span>!</span> </label><br>
                         <input type="text" name="pzn" id="pzn">
                     </li>
 
@@ -60,12 +72,82 @@
 
 
 <style>
+.popup1 {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
 
+/* The actual popup */
+.popuptext1 {
+    visibility: hidden;
+    width: 160px;
+    background-color: #edf6e8;
+    color: #000;
+    text-align: center;
+    border-radius: 2px;
+    border: solid 1px #43a13c;
+    padding: 8px 0;
+    position: absolute;
+    z-index: 1;
+    top: 135%;
+    right: -300%;
+    margin-left: -80px;
+}
+
+/* Popup arrow */
+.popup1 .popuptext1::after {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    right: 5%;
+    margin-left: -5px;
+    border-width: 10px;
+    border-style: solid;
+    border-color: #edf6e800 transparent #edf6e8 transparent;
+}
+
+/* Toggle this class - hide and show the popup */
+.popuptext1.show1 {
+    visibility: visible;
+    -webkit-animation: fadeIn 1s;
+    animation: fadeIn 1s;
+}
+
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+    from {opacity: 0;} 
+    to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity:1 ;}
+}
 </style>
 
 
     
 <script>
+    // ===========> Popup when click on info icon <===========
+    var submenu = document.getElementsByClassName("popup1");
+
+    for (var i = 0; i < submenu.length; i++) {
+        submenu[i].addEventListener('click', menus, false);
+    }
+
+    function menus() {
+        var menu = this.querySelector('.popuptext1');
+        menu.classList.toggle("show1");
+    };
+    // ===========> END: Popup when click on info icon <===========
+
+
+
 
     // ===========> Checkbox <===========
     // Check all checkboxes on check
