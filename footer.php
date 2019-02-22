@@ -1,11 +1,10 @@
-<footer></footer>
 
-<script type="text/javascript">
+<footer>
 	
-	// ===========>  When the user clicks on div, open the popup, ACCOUNT BUTTON <===========
-	function popup() {
-	    var popup = document.getElementById("myPopup");
-	    popup.classList.toggle("show");
-	}
-	// ===========> END: When the user clicks on div, open the popup, ACCOUNT BUTTON <===========
-</script>
+</footer>
+
+</body>
+</html>
+<!-- ACCOUNT SCRIPT -->
+	<script type="text/javascript" src="js/account-script/popup-acc.js"></script>
+<!-- END: ACCOUNT SCRIPT -->

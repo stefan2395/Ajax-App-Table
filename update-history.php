@@ -32,7 +32,7 @@
                 <tr>
                     <td><?php echo $rowNoteUdate['update_row']; ?></td>
                     <td><?php echo $initials; ?></td>
-                    <td><?php echo $rowNoteUdate['commentar'];; ?></td>3
+                    <td><?php echo $rowNoteUdate['commentar']; ?></td>
                 </tr>
 
             <?php } ?>

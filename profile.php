@@ -4,6 +4,10 @@
 <div>
 
 
+	<div class="welcome-title">
+        	<h2>Hi, <span style="text-transform: capitalize;"><?php echo $username ?></span>!</h2>
+	</div>
+
 	<div class=""> 
 			<h3>Row added: <?php echo $userCountRows ?></h3>
 			<h3>Last legged in <span style="color: blue;"><?php echo $last_login; ?></span></h3>
@@ -74,89 +78,5 @@
 
 <?php include 'footer.php'; ?>
 
-
-<script>
-	// ===========> Check if new password same as repeat password value <===========
-	function check() {
-		var changepass = document.getElementById('changepass').value;
-		var repeatpass = document.getElementById('repeatpass').value;
-		var message    = document.getElementById('message');
-
-		if (changepass == repeatpass) {
-			message.style.color = 'green';
-			message.innerHTML = 'matching';
-			document.getElementById('no-match-pass').innerHTML = '';
-		} else {
-			message.style.color = 'red';
-			message.innerHTML = 'not matching';
-		}
-
-		if (changepass == '' || repeatpass == '') {
-			message.innerHTML = '';
-		}
-	}
-	// ===========> END: Check if new password same as repeat password value <===========
-
-
-
-
-
-
-
-   	// ===========> Save password script <===========
-	function savePassword(saveId) {
-
-		var oldpass 	= document.getElementById('oldpass').value;
-		var changepass  = document.getElementById('changepass').value;
-		var repeatpass  = document.getElementById('repeatpass').value;
-	    // var ID 			= document.getElementById("ID").value;
-
-		if (changepass !== repeatpass || changepass == '' || repeatpass == '') {
-			if (changepass !== repeatpass) {
-				document.getElementById('no-match-pass').innerHTML = 'Passwords do not match';
-			}
-
-	        if (changepass == '') {
-				document.getElementById('changepass').style.border = "solid red";
-			} else {
-				document.getElementById('changepass').style.border = "";
-			}
-
-			if (repeatpass == '') {
-				document.getElementById('repeatpass').style.border = "solid red";
-			} else {
-				document.getElementById('repeatpass').style.border = "";
-			}
-		} else {
-			// Perform the AJAX request to update this use
-		    var delRow 		= document.getElementById("updateRow");
-		    var page 		= "change-password.php?id=" + saveId + "&oldpass=" + oldpass + "&changepass=" + changepass + "&repeatpass=" + repeatpass;
-		    var xmlhttp 	= new XMLHttpRequest();
-
-			htmlD 			= "";
-
-			xmlhttp.open("POST", page, true);
-	        xmlhttp.send();
-
-	         xmlhttp.onreadystatechange = function() {
-		            if(xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-	            	 	// Save button sweetalert2
-				            swal({
-				                position: 'top-end',
-				                type: 'success',
-				                title: 'Your work has been saved',
-				                showConfirmButton: false,
-				                timer: 1500
-				            }).then(() => {
-				                window.location = 'index.php';
-				            })
-			            // EDN: Save button sweetalert2 
-		            } 
-		        }  
-		}
-
-	}
-	// ===========> END: Save password script <===========
-
-
-</script>
+<script type="text/javascript" src="js/account-script/password-check.js"></script>
+<script type="text/javascript" src="js/account-script/save-password.js"></script>
